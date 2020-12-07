@@ -1,0 +1,50 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+:host ::ng-deep .mat-drawer-inner-container {
+  overflow: hidden;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.category-item {
+  background-color: #fff;
+  font-size: 13px;
+  transition: all .3s;
+}
+
+.category-item:hover {
+  background-color: whitesmoke;
+}
+
+.mat-accordion>.mat-expansion-panel-spacing:first-child,
+.mat-accordion>*:first-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing,
+mat-expansion-panel {
+  margin-top: 16px;
+}
+
+.mat-accordion>.mat-expansion-panel-spacing:last-child,
+.mat-accordion>*:last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+  margin-bottom: auto;
+}
+
+:host ::ng-deep .mat-expansion-panel-body {
+  padding-left: 3px;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}

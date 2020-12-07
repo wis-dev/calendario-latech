@@ -1,0 +1,27 @@
+<div class="row text-center">
+  <h1 class="fw-bold m-0"> {{ data?.day || '' }} </h1>
+  <p>{{ dayName || 'No disponible' }}</p>
+  <hr>
+  <h5 class="d-flex align-items-center justify-content-between">
+    Categorías
+    <button mat-icon-button matTooltip="Agregar" color="primary" *ngIf="!addingCategories" (click)="assingCategory()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </h5>
+  <mat-form-field class="w-100" appearance="outline" *ngIf="addingCategories">
+    <mat-label>Categorias</mat-label>
+    <mat-select [formControl]="categoriesControl" multiple>
+      <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="col-12 d-flex justify-content-end" *ngIf="addingCategories">
+    <button mat-raised-button color="secondary" class="mr-2" type="button" (click)="onCancelForm()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onAddCategories()" [disabled]="!categoriesControl.value">Guardar</button>
+  </div>
+  <p class="text-muted text-left" *ngIf="!selectedCategories.length && !addingCategories">Sin categorías asignadas.</p>
+  <mat-chip-list class="day-chip" cdkDropListOrientation="horizontal" *ngIf="!addingCategories">
+    <mat-chip class="day-box" *ngFor="let category of selectedCategories">
+      {{ category || 'No disponible' }}
+    </mat-chip>
+  </mat-chip-list>
+</div>

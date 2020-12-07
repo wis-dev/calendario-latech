@@ -1,0 +1,51 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="d-flex justify-content-between">
+      Categorias
+      <button mat-icon-button matTooltip="Crear" color="primary" (click)="addCategory()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="row ml-2">
+      <p class="text-muted" *ngIf="!categories.length">
+        No hay categorias disponibles.
+        <br><br>
+        Haga clic en el botón (+) para crear una.
+      </p>
+      <div class="category-item col-12 d-flex align-items-center justify-content-between my-2" *ngFor="let category of categories; let i = index;">
+        {{ category | sliceText }}
+        <button mat-icon-button (click)="deleteCategory(i)" class="mr-3" color="warn" matTooltip="Eliminar" aria-label="Delete category">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button> 
+      <span>LATECH | Calendario {{ year }} 📆</span>
+    </mat-toolbar>
+    <div class="container-fluid">
+      <mat-accordion #accordion multi class="row d-flex justify-content-around pt-3">
+        <div class="col-md-4" *ngFor="let monthName of months; let month = index">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title class="fw-bold text-capitalize">{{ monthName }}</mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-month [year]="year" [month]="month +1" [categories]="categories"></app-month>
+          </mat-expansion-panel>
+        </div>
+      </mat-accordion>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

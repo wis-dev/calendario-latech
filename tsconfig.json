@@ -2,7 +2,21 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
+    "paths": {
+      "@modules/*": ["app/modules/*"],
+      "@shared": ["app/shared/shared.index.ts"],
+      "@environment": ["environments/environment.ts"],
+      "@shared/*": [
+        "app/shared/*"
+      ],
+      "@services": [
+        "app/shared/services/index.ts"
+      ],
+      "@interfaces": [
+        "app/shared/interfaces/index.ts"
+      ],
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
